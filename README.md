@@ -1,16 +1,36 @@
-# SMARC Assets
-This is a package containing all of the SMARC Unity assets and scripts including vehicles, dynamics, sensors and more. 
+# Simulation
+The SMARC simulator contains 2 git submodules:
 
-## Quick start
+- **SMARCUnity**: the unity project, including scenes and rendering settings. Open this in [Unity Hub](https://docs.unity.com/en-us/hub)
+- **SMARCAssets**:  a package containing all of the SMARC Unity assets and scripts including vehicles, dynamics, sensors and more. 
 
-### Independently of SMaRC2
+These are Unity projects/packages, not a ROS packages. The simulator can nbe run without ROS. Connecting to ROS requires the bridge described below.
+
+## Installation
+
+### 1. Get the project and assets
+
+Choose one of the following set up:
+
+#### Independently of SMaRC2
 ```
 cd anywhere
 git clone git@github.com:smarc-project/SMARCUnity.git
 git clone git@github.com:smarc-project/SMARCAssets.git
 ```
 
-### As part of SMaRC2
+Keep `SMARCUnity` and `SMARCAssets` next to each other. The project's `Packages/manifest.json` references the assets using `file:../../SMARCAssets`, relative to the `Packages` folder.
+
+```text
+<your anywhere>/                 # Or ~/src/ for a standalone installation
+├── SMARCUnity/             # Add this folder to Unity Hub
+│   ├── Assets/
+│   ├── Packages/
+│   └── ProjectSettings/
+└── SMARCAssets/
+```
+
+#### As part of SMaRC2
 You can do the above, OR this:
 ```
 cd smarc2
@@ -18,7 +38,27 @@ git submodule update --remote --init simulation/SMARCUnity
 git submodule update --remote --init simulation/SMARCAssets
 ```
 
-### Common for both:
+### 2. Install Unity Hub
+
+Install [Unity Hub](https://docs.unity.com/en-us/hub/install-hub). For Ubuntu, follow Unity's [Linux installation instructions](https://docs.unity.com/en-us/hub/install-hub-linux).
+
+Also create a Unity ID as you would need it to sign-in in Unity Hub.
+
+### 3. Add the project to Hub
+
+In Hub, select **Projects → Add → Add project from disk**, then choose (depending how you have it set up):
+- Workspace installation: `~/smarc_ws/src/smarc2/simulation/SMARCUnity`
+
+Or
+
+- Standalone installation: `~/<your_dir>/SMARCUnity`
+
+### 4. Run the simulator
+
+1. In the Unity Hub's Project page, click on the SMARCUnity and wait for it to run. The Unity Editor's project window will pop up.
+2. Open `Assets/Scenes` and choose a scene (for example `AllTheRobots.unity` or `KTHTank.unity`)
+
+#### Common for both:
 Run Unity Hub:
   - Open Project: Navigate to SmarcUnity
   - Run SmarcUnity
