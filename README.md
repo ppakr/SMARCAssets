@@ -14,7 +14,7 @@ Choose one of the following set up:
 
 #### Independently of SMaRC2
 ```
-cd anywhere
+cd <anywhere>
 git clone git@github.com:smarc-project/SMARCUnity.git
 git clone git@github.com:smarc-project/SMARCAssets.git
 ```
@@ -58,52 +58,14 @@ Or
 1. In the Unity Hub's Project page, click on the SMARCUnity and wait for it to run. The Unity Editor's project window will pop up.
 2. Open `Assets/Scenes` and choose a scene (for example `AllTheRobots.unity` or `KTHTank.unity`)
 
-#### Common for both:
+<!-- #### Common for both:
 Run Unity Hub:
   - Open Project: Navigate to SmarcUnity
   - Run SmarcUnity
   - Open a scene under `Assets/Scenes/`
-  - Play
+  - Play -->
 
 You can find more detailed instructions on using all available vehicles, sensors, connections, UIs etc. [here](./Documentation/README.md).
-
-
-## ROS connection
-- We use the [ROS-TCP-Endpoint](https://github.com/KKalem/ROS-TCP-Endpoint) package to speak to ROS2. 
-  - You can use [this simple script](https://github.com/smarc-project/smarc2/blob/humble/scripts/unity_ros_bridge.sh) to run the bridge and then use `rviz2` and `rqt` to check what things look like in ROS.
-- The ROS connection is especially useful when you are running headless.
-
-
-### ROS Messages
-These are generated from within the editor:
-- Robotics -> Generate ROS Messages...
-- Fill in the fields in the pop-up
-  - Usually you can not generate these INTO the SMARCAssets package, so place the RosMessages folder anywhere for now
-- Cut/Paste the generated RosMessages folder into `SMARCAssets/Runtime/Scripts/VehicleComponents/ROS/Core/RosMessages`
-
-
-## How to cite
-```
-@INPROCEEDINGS{11139391,
-  author={Kartašev, Mart and Dörner, David and Özkahraman, Özer and Ögren, Petter and Stenius, Ivan and Folkesson, John},
-  booktitle={2025 Symposium on Maritime Informatics and Robotics (MARIS)}, 
-  title={SMaRCSim: Maritime Robotics Simulation Modules}, 
-  year={2025},
-  volume={},
-  number={},
-  pages={1-4},
-  keywords={Learning systems;Heuristic algorithms;Games;Planning;Vehicle dynamics;Informatics;Robots;Engines;Physics;Testing;Simulation;multi-domain;AUVs;learning-based methods;mission-planning},
-  doi={10.1109/MARIS64137.2025.11139391}}
-```
-
-
-## Help!
-If at any point, you needed help, got the help, and the help was not about using Unity (Good example:"How do I make my vehicle buoyant?". Bad example: "How do I move this object in the editor?"), please [open an issue in github](https://github.com/smarc-project/SMARCUnityAssets/issues) (and tag it with "Documentation" if you can). 
-That way, we can identify gaps in our documentation and hopefully add them in for the next person.
-
-
-# You are probably done here. Continue if this is not your first ever Unity project.
-
 
 ## Installation for non-SMaRC projects
 
@@ -160,3 +122,34 @@ Once all the dependencies are installed and configured, you can install this pac
 ```
 https://github.com/smarc-project/SMARCUnityAssets
 ```
+
+## ROS connection
+- We use the [ROS-TCP-Endpoint](https://github.com/KKalem/ROS-TCP-Endpoint) package to speak to ROS2. 
+  - You can use [this simple script](https://github.com/smarc-project/smarc2/blob/humble/scripts/unity_ros_bridge.sh) to run the bridge and then use `rviz2` and `rqt` to check what things look like in ROS.
+- The ROS connection is especially useful when you are running headless.
+
+### ROS Messages
+These are generated from within the editor:
+- Robotics -> Generate ROS Messages...
+- Fill in the fields in the pop-up
+  - Usually you can not generate these INTO the SMARCAssets package, so place the RosMessages folder anywhere for now
+- Cut/Paste the generated RosMessages folder into `SMARCAssets/Runtime/Scripts/VehicleComponents/ROS/Core/RosMessages`
+
+## How to cite
+```
+@INPROCEEDINGS{11139391,
+  author={Kartašev, Mart and Dörner, David and Özkahraman, Özer and Ögren, Petter and Stenius, Ivan and Folkesson, John},
+  booktitle={2025 Symposium on Maritime Informatics and Robotics (MARIS)}, 
+  title={SMaRCSim: Maritime Robotics Simulation Modules}, 
+  year={2025},
+  volume={},
+  number={},
+  pages={1-4},
+  keywords={Learning systems;Heuristic algorithms;Games;Planning;Vehicle dynamics;Informatics;Robots;Engines;Physics;Testing;Simulation;multi-domain;AUVs;learning-based methods;mission-planning},
+  doi={10.1109/MARIS64137.2025.11139391}}
+```
+
+
+## Help!
+If at any point, you needed help, got the help, and the help was not about using Unity (Good example:"How do I make my vehicle buoyant?". Bad example: "How do I move this object in the editor?"), please [open an issue in github](https://github.com/smarc-project/SMARCUnityAssets/issues) (and tag it with "Documentation" if you can). 
+That way, we can identify gaps in our documentation and hopefully add them in for the next person.
