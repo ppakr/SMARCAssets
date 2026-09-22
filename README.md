@@ -55,15 +55,46 @@ Or
 
 ### 4. Run the simulator
 
-1. In the Unity Hub's Project page, click on the SMARCUnity and wait for it to run. The Unity Editor's project window will pop up.
+1. On the terminal run the command:
+```bash
+unityhub
+```
+Then, go to the project page and click on the SMARCUnity and wait for it to run. The Unity Editor's project window will pop up.
+> [!WARNING]
+> Open the project with the Unity Editor version specified in
+> `SMARCUnity/ProjectSettings/ProjectVersion.txt`. Opening it with a newer Editor
+> can upgrade the project's cache and serialized files, after which the project
+> might not work when reopened with an older Editor. If this happens, close Unity,
+> restore any version-controlled files changed by the upgrade, clear the generated
+> `SMARCUnity/Library/` cache, and then reopen the project with the intended Editor
+> version. Unity will rebuild the cache automatically.
 2. Open `Assets/Scenes` and choose a scene (for example `AllTheRobots.unity` or `KTHTank.unity`)
+Alternatively, the simulation could also be run using CLI:
 
-<!-- #### Common for both:
-Run Unity Hub:
-  - Open Project: Navigate to SmarcUnity
-  - Run SmarcUnity
-  - Open a scene under `Assets/Scenes/`
-  - Play -->
+```bash
+cd <simulation_dir>
+unity open ./SMARCUnity
+```
+3. Press `Play`
+4. In the game mode, enable **Unity Control** for keyboard control
+
+Key mappings are:
+
+<!-- TODO -->
+| Key | SAM action |
+|---|---|
+| `W` | Forward thrust |
+| `S` | Reverse thrust |
+| `←` / `→` | Horizontal thrust-vector angle—turn left/right |
+| `↑` / `↓` | Vertical thrust-vector angle—pitch |
+| `C` | VBS toward 100% |
+| `Space` | VBS toward 0% |
+| Neither `C` nor `Space` | VBS at 50% |
+| `F` | LCG toward 100% |
+| `R` | LCG toward 0% |
+| Neither `F` nor `R` | LCG at 50% |
+| `Q` / `E` | Differential-thruster roll while applying forward/reverse thrust |
+
 
 You can find more detailed instructions on using all available vehicles, sensors, connections, UIs etc. [here](./Documentation/README.md).
 
