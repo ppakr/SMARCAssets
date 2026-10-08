@@ -17,6 +17,8 @@ namespace ROS.Publishers
         public Transform MapFrameTransform;
         [Tooltip("Adds a prefix to all TF frames published by this publisher, except unity_origin.")]
         public string tf_prefix = "";
+        [Tooltip("TF frame name to publish for the physical base_link. Leave empty to publish the Unity link name.")]
+        public string base_link_tf_name = "";
         [Tooltip("Publish without any connection to the world frames. This is useful when you want to publish _just this bit_ of the TF independently of its global position.")]
         public bool OnlyRelative = false;
         TransformTreeNode BaseLinkTreeNode;
@@ -24,6 +26,17 @@ namespace ROS.Publishers
         GameObject OdomLinkGO;
 
         List<TransformStampedMsg> staticTFs = new List<TransformStampedMsg>();
+
+        string PublishedBaseLinkFrameName => string.IsNullOrWhiteSpace(base_link_tf_name)
+            ? BaseLinkTreeNode.name
+            : base_link_tf_name;
+
+        string PublishedFrameName(string frameName)
+        {
+            return frameName == BaseLinkTreeNode.name
+                ? PublishedBaseLinkFrameName
+                : frameName;
+        }
 
         void OnValidate()
         {
@@ -167,7 +180,7 @@ namespace ROS.Publishers
                 };
                 var odomToBaseLink = new TransformStampedMsg(
                     new HeaderMsg(new TimeStamp(Clock.time), "odom"),
-                    BaseLinkTreeNode.name,
+                    PublishedBaseLinkFrameName,
                     odomToBaseLinkTFMSG);
 
                 tfMessageList.Add(odomToBaseLink);                
@@ -191,8 +204,8 @@ namespace ROS.Publishers
             // prefix all frames with the robot name to create a namespace
             foreach (TransformStampedMsg msg in tfMessageList)
             {
-                msg.header.frame_id = $"{tf_prefix}{robot_name}/{msg.header.frame_id}";
-                msg.child_frame_id = $"{tf_prefix}{robot_name}/{msg.child_frame_id}";
+                msg.header.frame_id = $"{tf_prefix}{robot_name}/{PublishedFrameName(msg.header.frame_id)}";
+                msg.child_frame_id = $"{tf_prefix}{robot_name}/{PublishedFrameName(msg.child_frame_id)}";
             }
 
             // refresh the times of the static frames
